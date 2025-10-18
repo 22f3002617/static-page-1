@@ -1,47 +1,43 @@
 # Currency Picker and Converter
 
-This is a simple web app that allows you to track product sales in different currencies. It includes a currency selector that updates the total sales amount based on the selected currency, using provided exchange rates.
+This is a simple web application that allows users to select a currency to convert the total sales computed from a table. The conversion rates are embedded within the application.
 
 ## Features
 
-- Dynamic currency selection with real-time conversion.
-- Total sales amount updates based on selected currency.
-- Predefined exchange rates for USD, EUR, INR, JPY, and GBA.
-- Displays total sales in a designated currency.
-- Sample markdown content is embedded as part of the application.
+- Displays a list of products with their sales in USD.
+- Provides a dropdown to select different currencies.
+- Converts total sales from USD to the selected currency.
+- Updates the total with the selected currency code.
+- Includes a conversion example in HTML format in `#markdown-output`.
 
 ## Usage
 
-- Open the app directly in a web browser from your GitHub Pages link.
-- Select a currency from the dropdown to see the converted total sales amount.
+1. Open `index.html` in a web browser.
+2. Use the dropdown to select a desired currency.
+3. Observe the automatic conversion of total sales into the selected currency.
 
 ## Local Development
 
-1. Clone the repository.
-2. Open `index.html` in your local browser to test the app.
+To run the app locally, clone the repository, and open `index.html` in a web browser. Ensure all logic and data are embedded within the HTML file to enable static site hosting.
 
-## GitHub Pages Deployment
+## Deployment on GitHub Pages
 
-1. Create a new repository or use an existing one.
-2. Push the HTML and other necessary files to the main branch.
-3. Enable GitHub Pages in the repository settings.
-4. Access the app via the provided GitHub Pages URL.
+1. Push all content to a GitHub repository.
+2. Go to the repository settings and enable GitHub Pages from the `main` branch.
+3. Access the live application through the provided GitHub Pages URL.
 
 ## Accessibility and Fallback
 
-- The app supports inline styles and simple JavaScript logic for functionality.
-- Fallback for unsupported or missing currency rates defaults to USD.
+- Uses semantic HTML for better accessibility.
+- Inline scripts and styles are used to ensure the app works without the need for external resources.
+- Provides a default conversion when JavaScript is enabled.
 
 ## Future Improvements
 
-- Introduce more currencies dynamically via an API.
-- Enhance UI responsiveness for better mobile experience.
+- Add more comprehensive currency rate fetching from an external API.
+- Implement region-based currency formatting.
+- Enhance accessibility with ARIA roles if the UI becomes more complex.
 
 ## License
 
 This project is licensed under the MIT License.
-
-## Assumptions
-
-- Exchange rates are predefined and hardcoded for simplicity.
-- The focus is on vanilla JS to keep the application lightweight and fast.
