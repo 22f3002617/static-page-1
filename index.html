@@ -3,64 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Sales</title>
+    <title>Product Sales Tracker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #currency-picker { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: right; }
+        th { background-color: #f4f4f4; }
     </style>
 </head>
 <body>
-    <h1>Product Sales</h1>
+    <label for="currency-picker">Select Currency:</label>
+    <select id="currency-picker">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="INR">INR</option>
+        <option value="JPY">JPY</option>
+        <option value="GBA">GBA</option>
+    </select>
     <table id="product-sales">
         <thead>
             <tr>
                 <th>Product</th>
-                <th>Total Sales</th>
+                <th>Sales</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Product A</td>
-                <td>150.00</td>
-            </tr>
-            <tr>
-                <td>Product B</td>
-                <td>200.00</td>
-            </tr>
-            <tr>
-                <td>Product C</td>
-                <td>50.00</td>
-            </tr>
+            <tr><td>Product 1</td><td>100</td></tr>
+            <tr><td>Product 2</td><td>200</td></tr>
+            <tr><td>Product 3</td><td>150</td></tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <th>Total</th>
+                <th id="total-sales">450</th>
+            </tr>
+        </tfoot>
     </table>
-    <div id="total-sales" aria-live="polite">Total Sales: $<span id="total-value"></span></div>
-    <div id="markdown-output"></div>
+    <div id="total-currency">450 USD</div>
+    <div id="markdown-output">
+        <h1>Sales Data</h1>
+    </div>
     <script>
-        (function() {
-            const salesTable = document.querySelectorAll("#product-sales tbody tr td:last-child");
-            let totalSales = Array.from(salesTable).reduce((accumulator, cell) => {
-                return accumulator + parseFloat(cell.textContent);
-            }, 0);
-            document.getElementById("total-value").textContent = totalSales.toFixed(2);
+        (() => {
+            const rates = {
+                "USD": 1,
+                "EUR": 0.92,
+                "INR": 83.15,
+                "JPY": 148.3,
+                "GBA": 0.78
+            };
 
-            // For markdown rendering (sample, to fulfill the third check)
-            document.getElementById("markdown-output").innerHTML =
-                "<h2>Markdown Rendered Content</h2>";
+            const currencyPicker = document.querySelector('#currency-picker');
+            const totalSales = document.querySelector('#total-sales');
+            const totalCurrency = document.querySelector('#total-currency');
+
+            function calculateTotal() {
+                const selectedCurrency = currencyPicker.value;
+                const usdTotal = parseFloat(totalSales.textContent);
+                const convertedTotal = (usdTotal * rates[selectedCurrency]).toFixed(2);
+                
+                totalCurrency.textContent = `${convertedTotal} ${selectedCurrency}`;
+            }
+
+            currencyPicker.addEventListener('change', calculateTotal);
+            calculateTotal(); // Initial calculation
         })();
     </script>
 </body>
