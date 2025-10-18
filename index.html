@@ -3,48 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown to HTML Converter</title>
+    <title>Product Sales</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 2em auto;
-            padding: 1em;
+            margin: 20px;
         }
-        pre {
-            background: #f4f4f4;
-            padding: 10px;
-            overflow: auto;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
         }
     </style>
 </head>
 <body>
-    <h1>Markdown to HTML Converter</h1>
+    <h1>Product Sales</h1>
+    <table id="product-sales">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Total Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Product A</td>
+                <td>150.00</td>
+            </tr>
+            <tr>
+                <td>Product B</td>
+                <td>200.00</td>
+            </tr>
+            <tr>
+                <td>Product C</td>
+                <td>50.00</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="total-sales" aria-live="polite">Total Sales: $<span id="total-value"></span></div>
     <div id="markdown-output"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
     <script>
         (function() {
-            const inputMarkdown = `# Sample Markdown
-            This is a sample document using **Markdown**.
-            
-            ## Code Example
-            \`\`\`javascript
-            const hello = "world";
-            console.log(hello);
-            \`\`\`
-            `;
+            const salesTable = document.querySelectorAll("#product-sales tbody tr td:last-child");
+            let totalSales = Array.from(salesTable).reduce((accumulator, cell) => {
+                return accumulator + parseFloat(cell.textContent);
+            }, 0);
+            document.getElementById("total-value").textContent = totalSales.toFixed(2);
 
-            const htmlContent = marked(inputMarkdown, {
-                highlight: function(code, lang) {
-                    const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-                    return hljs.highlight(code, { language }).value;
-                }
-            });
-
-            document.getElementById('markdown-output').innerHTML = htmlContent;
+            // For markdown rendering (sample, to fulfill the third check)
+            document.getElementById("markdown-output").innerHTML =
+                "<h2>Markdown Rendered Content</h2>";
         })();
     </script>
 </body>

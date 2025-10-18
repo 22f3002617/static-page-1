@@ -1,30 +1,36 @@
-# Markdown to HTML Converter
+# Product Sales Tracker
 
-This project is a simple static site that converts a given Markdown input to HTML using the `marked` library and syntax highlights code blocks using `highlight.js`.
+This is a simple project demonstrating a static GitHub Pages site for tracking product sales.
 
 ## Features
-- Converts Markdown to HTML and renders it inside `#markdown-output`.
-- Uses `marked` for efficient Markdown parsing.
-- Applies `highlight.js` for syntax highlighting of code blocks.
+- Displays a table with products and their total sales.
+- Updates and shows the calculated total sales below the table.
+- Renders lightweight and accessible HTML with ARIA attributes.
+- Uses pure HTML/CSS/JavaScript without any external dependencies.
+- Includes placeholder Markdown rendering to showcase functionality.
 
 ## Usage
-1. Open `index.html` in a browser.
-2. Markdown content is automatically converted and displayed.
+- Open `index.html` in any web browser to view and test the application.
+- Deploy via GitHub Pages for easy access.
 
 ## Local Development
-- No setup required. Simply edit the content in the script section of `index.html`.
+- No additional tools or setup required.
+- Directly edit `index.html` and open it in a browser to see changes.
 
 ## Deployment
-1. Commit and push your changes to a GitHub repository.
-2. Enable GitHub Pages from the repository settings to publish the site.
+1. Push the changes to a GitHub repository.
+2. Enable GitHub Pages in the repository settings.
 
 ## Accessibility and Fallback
-- The page uses semantic HTML elements for better accessibility.
-- Inline styles for simplicity and quick loading.
+- Provides ARIA live regions for dynamic data updates.
+- Ensures text is legible and layout is responsive.
 
 ## Future Improvements
-- Add an interface to input Markdown dynamically.
-- Option to download the converted HTML.
+- Add functionality to dynamically manage products and sales data.
+- Include user authentication for personalized views.
+
+## Assumptions
+- The project assumes a static list of products and sales data for initial demonstration.
 
 ## License
 MIT License [placeholder]
