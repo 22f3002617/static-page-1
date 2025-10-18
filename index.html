@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown to HTML Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Markdown to HTML Converter</h1>
+    <div id="markdown-output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <script>
+        (function() {
+            const inputMarkdown = `# Sample Markdown
+            This is a sample document using **Markdown**.
+            
+            ## Code Example
+            \`\`\`javascript
+            const hello = "world";
+            console.log(hello);
+            \`\`\`
+            `;
+
+            const htmlContent = marked(inputMarkdown, {
+                highlight: function(code, lang) {
+                    const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                    return hljs.highlight(code, { language }).value;
+                }
+            });
+
+            document.getElementById('markdown-output').innerHTML = htmlContent;
+        })();
+    </script>
+</body>
+</html>
