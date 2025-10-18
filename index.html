@@ -3,30 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Picker and Converter</title>
+    <title>Currency Picker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-        select {
-            margin-bottom: 20px;
-        }
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; text-align: left; border: 1px solid #ddd; }
+        #currency-picker { margin-bottom: 20px; }
     </style>
 </head>
 <body>
-    <h1>Currency Picker and Converter</h1>
-
+    <h1>Product Sales</h1>
     <select id="currency-picker">
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
@@ -39,28 +25,27 @@
         <thead>
             <tr>
                 <th>Product</th>
-                <th>Sales (in USD)</th>
+                <th>Sales</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Product A</td>
-                <td>200</td>
+                <td>100</td>
             </tr>
             <tr>
                 <td>Product B</td>
-                <td>150</td>
+                <td>200</td>
             </tr>
             <tr>
                 <td>Product C</td>
-                <td>100</td>
+                <td>300</td>
             </tr>
         </tbody>
     </table>
 
-    <div>Total Sales: <span id="total-sales">450</span> <span id="total-currency">USD</span></div>
-
-    <div id="markdown-output"><h2>Conversion Example</h2></div>
+    <p>Total: <span id="total-currency">USD</span> <span id="total-value"></span></p>
+    <div id="markdown-output"></div>
 
     <script>
         (function() {
@@ -73,19 +58,28 @@
             };
 
             const currencyPicker = document.getElementById('currency-picker');
-            const totalSalesElement = document.getElementById('total-sales');
-            const totalCurrencyElement = document.getElementById('total-currency');
+            const totalCurrency = document.getElementById('total-currency');
+            const totalValue = document.getElementById('total-value');
             const rows = [...document.querySelectorAll("#product-sales tbody tr td:last-child")];
-            const usdSum = rows.reduce((acc, cell) => acc + parseFloat(cell.textContent), 0);
-            totalSalesElement.textContent = usdSum.toFixed(2);
 
-            currencyPicker.addEventListener('change', (event) => {
-                const selectedCurrency = event.target.value;
-                const rate = rates[selectedCurrency];
-                const convertedTotal = usdSum * rate;
-                totalSalesElement.textContent = convertedTotal.toFixed(2);
-                totalCurrencyElement.textContent = selectedCurrency;
-            });
+            function calculateTotal() {
+                const sum = rows.reduce((acc, cell) => acc + parseFloat(cell.textContent), 0);
+                const selectedCurrency = currencyPicker.value;
+                const convertedSum = sum * rates[selectedCurrency];
+                totalCurrency.textContent = selectedCurrency;
+                totalValue.textContent = convertedSum.toFixed(2);
+            }
+
+            currencyPicker.addEventListener('change', calculateTotal);
+            
+            window.onload = calculateTotal;
+
+            // Markdown output
+            const markdownOutput = document.getElementById('markdown-output');
+            markdownOutput.innerHTML = `
+                <h2>Markdown Example</h2>
+                <p>This is a demonstration of how markdown is rendered.</p>
+            `;
         })();
     </script>
 </body>

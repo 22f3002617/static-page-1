@@ -1,43 +1,42 @@
 # Currency Picker and Converter
 
-This is a simple web application that allows users to select a currency to convert the total sales computed from a table. The conversion rates are embedded within the application.
+This is a simple web application that allows users to select a currency from a dropdown and view the total sales converted into that currency.
 
 ## Features
 
-- Displays a list of products with their sales in USD.
-- Provides a dropdown to select different currencies.
-- Converts total sales from USD to the selected currency.
-- Updates the total with the selected currency code.
-- Includes a conversion example in HTML format in `#markdown-output`.
+- **Currency Selection**: Easily switch between different currencies (USD, EUR, INR, JPY, GBA) using the dropdown.
+- **Total Conversion**: Automatically updates the total sales amount to reflect the selected currency conversion.
+- **Live Updates**: Conversion recalculates immediately when selecting a new currency.
+- **Static Content Rendering**: Includes a markdown demo with headers and paragraphs within the application.
 
 ## Usage
 
-1. Open `index.html` in a web browser.
-2. Use the dropdown to select a desired currency.
-3. Observe the automatic conversion of total sales into the selected currency.
+1. Open the `index.html` file in a web browser.
+2. Select your preferred currency from the dropdown menu.
+3. View the converted total in the specified currency below the product sales table.
 
 ## Local Development
 
-To run the app locally, clone the repository, and open `index.html` in a web browser. Ensure all logic and data are embedded within the HTML file to enable static site hosting.
+To run the project locally:
 
-## Deployment on GitHub Pages
+1. Clone the repository.
+2. Open `index.html` directly in your web browser.
 
-1. Push all content to a GitHub repository.
-2. Go to the repository settings and enable GitHub Pages from the `main` branch.
-3. Access the live application through the provided GitHub Pages URL.
+## GitHub Pages Deployment
+
+1. Push your code to GitHub.
+2. Enable GitHub Pages in the repository settings, selecting the main branch or `docs` folder as the source.
 
 ## Accessibility and Fallback
 
-- Uses semantic HTML for better accessibility.
-- Inline scripts and styles are used to ensure the app works without the need for external resources.
-- Provides a default conversion when JavaScript is enabled.
+- Includes basic ARIA roles and semantic HTML for accessibility.
+- Fallback provided by default selection of USD if no currency is chosen.
 
 ## Future Improvements
 
-- Add more comprehensive currency rate fetching from an external API.
-- Implement region-based currency formatting.
-- Enhance accessibility with ARIA roles if the UI becomes more complex.
+- Allow dynamic product data loading.
+- Add support for more currencies.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is MIT Licensed. A complete license text should be included in the final repository.
