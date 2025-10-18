@@ -3,72 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Sales Tracker</title>
+    <title>Currency Converter</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        #currency-picker { margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: right; }
-        th { background-color: #f4f4f4; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #currency-picker {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        #total {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <label for="currency-picker">Select Currency:</label>
-    <select id="currency-picker">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="INR">INR</option>
-        <option value="JPY">JPY</option>
-        <option value="GBA">GBA</option>
-    </select>
-    <table id="product-sales">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Sales</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>Product 1</td><td>100</td></tr>
-            <tr><td>Product 2</td><td>200</td></tr>
-            <tr><td>Product 3</td><td>150</td></tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Total</th>
-                <th id="total-sales">450</th>
-            </tr>
-        </tfoot>
-    </table>
-    <div id="total-currency">450 USD</div>
-    <div id="markdown-output">
-        <h1>Sales Data</h1>
-    </div>
-    <script>
-        (() => {
-            const rates = {
-                "USD": 1,
-                "EUR": 0.92,
-                "INR": 83.15,
-                "JPY": 148.3,
-                "GBA": 0.78
-            };
 
-            const currencyPicker = document.querySelector('#currency-picker');
-            const totalSales = document.querySelector('#total-sales');
-            const totalCurrency = document.querySelector('#total-currency');
+<h1>Product Sales Tracker</h1>
 
-            function calculateTotal() {
-                const selectedCurrency = currencyPicker.value;
-                const usdTotal = parseFloat(totalSales.textContent);
-                const convertedTotal = (usdTotal * rates[selectedCurrency]).toFixed(2);
-                
-                totalCurrency.textContent = `${convertedTotal} ${selectedCurrency}`;
-            }
+<select id="currency-picker" aria-label="Currency Selector">
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="INR">INR</option>
+    <option value="JPY">JPY</option>
+    <option value="GBA">GBA</option>
+</select>
 
-            currencyPicker.addEventListener('change', calculateTotal);
-            calculateTotal(); // Initial calculation
-        })();
-    </script>
+<table id="product-sales">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Amount (USD)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Product A</td>
+            <td>100.00</td>
+        </tr>
+        <tr>
+            <td>Product B</td>
+            <td>150.00</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            <td id="total"><span id="total-value">250.00</span> <span id="total-currency">USD</span></td>
+        </tr>
+    </tfoot>
+</table>
+
+<div id="markdown-output"></div>
+
+<script>
+    const rates = {
+        "USD": 1,
+        "EUR": 0.92,
+        "INR": 83.15,
+        "JPY": 148.3,
+        "GBA": 0.78
+    };
+
+    (function() {
+        const currencyPicker = document.getElementById('currency-picker');
+        const totalValueEl = document.getElementById('total-value');
+        const totalCurrencyEl = document.getElementById('total-currency');
+        const rows = [...document.querySelectorAll('#product-sales tbody tr td:last-child')];
+        
+        let sum = rows.reduce((acc, cell) => acc + parseFloat(cell.textContent), 0);
+        
+        currencyPicker.addEventListener('change', () => {
+            const selectedCurrency = currencyPicker.value;
+            const conversionRate = rates[selectedCurrency];
+            const convertedTotal = (sum * conversionRate).toFixed(2);
+            
+            totalValueEl.textContent = convertedTotal;
+            totalCurrencyEl.textContent = selectedCurrency;
+        });
+
+        document.getElementById('markdown-output').innerHTML = "<h1>Currency Converter</h1>";
+    })();
+</script>
+
 </body>
 </html>

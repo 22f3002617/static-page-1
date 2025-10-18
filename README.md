@@ -1,43 +1,46 @@
 # Product Sales Tracker
 
-This is a simple product sales tracker that provides a currency conversion feature.
+This is a simple product sales tracker that allows you to view and convert the total sales amount into different currencies.
 
 ## Features
 
-- Displays a list of products and their sales.
-- Calculates the total sales and allows conversion to different currencies.
-- Includes a dynamic currency picker that updates the total in the selected currency.
-- Accessible and responsive design.
-- Initial currency conversion on page load.
+- Displays products and their sales amounts in USD.
+- Allows currency selection to convert the displayed total.
+- Updates the total displayed amount based on selected currency.
+- Currency rates are hardcoded within the application for demonstration purposes.
+- Supported Currencies: USD, EUR, INR, JPY, GBA.
 
-## Usage
+## Usage Guide
 
 1. Open the `index.html` file in a web browser.
-2. Use the currency picker to select a desired currency.
-3. The total sales value will convert accordingly.
+2. Choose a currency from the dropdown selector to convert the displayed total.
 
 ## Local Development
 
-1. Clone the repository.
-2. Open the `index.html` file directly in any modern web browser.
-3. No server setup required.
+- Clone the repository to your local machine.
+- Open `index.html` with any web browser to interact with the app.
 
 ## GitHub Pages Deployment
 
-1. Push the repository to GitHub.
-2. Navigate to the repository settings.
-3. Enable GitHub Pages and select the main branch or a specific directory.
+1. Ensure `index.html` is in the root directory of your GitHub repository.
+2. Go to your repository's settings and enable GitHub Pages from the `main` branch.
 
-## Accessibility and Fallbacks
+## Accessibility and Fallback Notes
 
-- Fully keyboard accessible elements.
-- Page functionality without JavaScript is limited to static display.
+- Semantic HTML elements are used for better accessibility.
+- Inline styles ensure that the layout and design are consistent without external dependencies.
 
 ## Future Improvements
 
-- Allow user to add and remove sales records dynamically.
-- Persist currency selection across sessions.
+- Fetch real-time currency rates from an API.
+- Add support for more currencies.
+- Implement automated tests using Playwright or similar tools.
 
 ## License
 
-This project is licensed under the MIT License. Placeholder for actual license details.
+This project is licensed under the MIT License. Placeholder for license text.
+
+## Assumptions
+
+- Currency rates are static for demo purposes.
+- The project scope includes basic functionality for currency conversion in a static setup.
